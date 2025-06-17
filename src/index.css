@@ -1,2 +1,27 @@
 @import "tailwindcss";
 
+@keyframes floaty {
+  0%  {
+    transform: translateY(-200);
+  }
+  100% {
+    transform: translateY(-200px);
+  }
+}
+
+.animate-floaty {
+  animation: floaty 1s forwards;
+}
+
+@keyframes floaty2 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-floaty2 {
+  animation: floaty2 4s forwards;
+}
