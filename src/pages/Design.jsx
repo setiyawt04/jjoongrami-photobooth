@@ -26,7 +26,7 @@ function Design() {
 
 
     return (
-          <div className="w-full h-[92vh] bg-[#2a2d32] overflow-y-hidden flex flex-col sm:aspect-[9/16] mx-auto sm:items-center sm:max-w-xs sm:rounded-2xl sm:border-3 sm:border-[#777981]">
+          <div className="w-full h-[92vh] bg-menu overflow-y-hidden flex flex-col sm:aspect-[9/16] mx-auto sm:items-center sm:max-w-xs sm:rounded-2xl sm:border-3 sm:border-[#777981]">
             <div className="flex justify-between items-center w-full h-[12vh] p-5">
               <button className="text-xl italic font-bold text-[#777981]">Back</button>
               <button className="text-xl italic font-bold text-[#e0e0e3]">Save</button>

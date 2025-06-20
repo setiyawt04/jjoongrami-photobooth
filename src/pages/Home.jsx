@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { ClipLoader } from "react-spinners";
+import { PropagateLoader } from "react-spinners";
 import Video from '../assets/images/vid.mp4'
+import bgImage from '../assets/images/bg.jpg'
 
 function Home() {
     const [LetsGo, setLetsGo] = useState(false)
@@ -22,7 +23,6 @@ function Home() {
         setIsLoading(true);
         const imagePreview = URL.createObjectURL(file)
         setTimeout(() => {
-        // kasih delay dikit buat nunjukin loader
         navigate("/design", {
             state: {
             preview: imagePreview,
@@ -36,8 +36,8 @@ function Home() {
 
 
     return isLoading ? (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-                    <ClipLoader size={80} color="#ffffff" />
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-60" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover'}}>
+                    <PropagateLoader size={30} color="#e0e0e3" />
                 </div>
                     ) : ( 
                 <div className={`flex flex-col sm:aspect-[9/16] mx-auto sm:items-center sm:max-w-xs h-[92vh] relative ${LetsGo ? "bg-menu" : ""}`}>
@@ -77,8 +77,9 @@ function Home() {
                                 <button onClick={handleClick} className="sm:w-[20vw] w-[70vw] bg-[#777981] text-sm text-black font-bold italic pt-3 pr-10 pb-3 pl-10 rounded-2xl">
                                     TAKE A PHOTO
                                 </button>
-                                <label>
+                                <label htmlFor="cameraInput">
                                     <input
+                                    id='cameraInput'
                                     className='hidden'
                                     type="file"
                                     accept="image/*"
@@ -94,6 +95,7 @@ function Home() {
                                 <button className="sm:w-[20vw] text-sm w-[70vw] bg-[#777981] text-black font-bold italic pt-3 pr-10 pb-3 pl-10 rounded-2xl">
                                     TRY SAMPLE PHOTO
                                 </button>
+                            
                             </div>
                         )}
                     </header>
