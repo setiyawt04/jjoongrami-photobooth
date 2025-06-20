@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
+
 @keyframes floaty {
   0%  {
-    transform: translateY(-200);
+    transform: translateY(0px);
   }
   100% {
     transform: translateY(-200px);
   }
 }
+
 
 .animate-floaty {
   animation: floaty 1s forwards;
@@ -24,4 +26,13 @@
 
 .animate-floaty2 {
   animation: floaty2 4s forwards;
+}
+
+.bg-menu {
+  background-image: url('./assets/images/bg-menu.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 3px solid #777981;
+  border-radius: 12px;
+  
 }
