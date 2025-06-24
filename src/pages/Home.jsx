@@ -16,23 +16,42 @@ function Home() {
     };
 
     const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    
-    
-    if (file) {
+        const file = event.target.files[0];
+        if (!file) return;
+
         setIsLoading(true);
-        const imagePreview = URL.createObjectURL(file)
-        setTimeout(() => {
-        navigate("/design", {
-            state: {
-            preview: imagePreview,
-            imageFile: file,
-            },
-        });
-        }, 2000);
-   
-        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+            // Resize dulu
+            const canvas = document.createElement("canvas");
+            const MAX_WIDTH = 800;
+            const scale = MAX_WIDTH / img.width;
+            canvas.width = MAX_WIDTH;
+            canvas.height = img.height * scale;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            // Convert hasil resize ke base64
+            const resizedBase64 = canvas.toDataURL("image/jpeg", 0.8); // 0.8 = kualitas
+            localStorage.setItem("savedPreview", resizedBase64);
+
+            navigate("/design", {
+                state: {
+                preview: resizedBase64,
+                },
+            });
+            };
+            img.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
     };
+
+
 
 
     return isLoading ? (
@@ -40,9 +59,9 @@ function Home() {
                     <PropagateLoader size={30} color="#e0e0e3" />
                 </div>
                     ) : ( 
-                <div className={`flex flex-col sm:aspect-[9/16] mx-auto sm:items-center sm:max-w-xs h-[92vh] relative ${LetsGo ? "bg-menu" : ""}`}>
+                <div className={`flex flex-col sm:aspect-[9/16] mx-auto sm:items-center sm:max-w-xs h-[100vh] sm:h-[92vh] relative ${LetsGo ? "bg-menu" : ""}`}>
                     {!LetsGo && (
-                        <video className="w-full h-[92vh] top-0 left-0 overflow-x-hidden absolute object-cover sm:rounded-2xl sm:border-3 sm:border-[#777981]" autoPlay muted loop>
+                        <video className="w-full h-full sm:h-full top-0 left-0 overflow-x-hidden absolute object-cover sm:rounded-2xl sm:border-3 sm:border-[#777981]" autoPlay muted loop>
                             <source src={Video} type='video/mp4' />
                         </video>
                     )}
@@ -95,7 +114,7 @@ function Home() {
                                 <button className="sm:w-[20vw] text-sm w-[70vw] bg-[#777981] text-black font-bold italic pt-3 pr-10 pb-3 pl-10 rounded-2xl">
                                     TRY SAMPLE PHOTO
                                 </button>
-                            
+                                
                             </div>
                         )}
                     </header>
