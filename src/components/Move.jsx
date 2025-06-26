@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Moveable from "react-moveable";
 
-export default function Move({ targetRef }) {
+export default function Move({ targetRef, onUpdateTransform, onUpdateSize }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -12,22 +12,27 @@ export default function Move({ targetRef }) {
 
   return (
     <Moveable
-      target={targetRef.current} // ✅ ini penting banget!
-      resizable={true}
+      target={targetRef.current}
       draggable={true}
+      resizable={true}
       rotatable={true}
-      keepRatio={false}
+      keepRatio={true}
       renderDirections={["nw", "n", "ne", "w", "e", "sw", "s", "se"]}
-      onResize={(e) => {
-        e.target.style.width = `${e.width}px`;
-        e.target.style.height = `${e.height}px`;
-        e.target.style.transform = e.drag.transform;
+      onDrag={({ target, transform }) => {
+        target.style.transform = transform;
+        onUpdateTransform?.(transform);
       }}
-      onDrag={(e) => {
-        e.target.style.transform = e.transform;
+      onResize={({ target, width, height, drag }) => {
+        target.style.width = `${width}px`;
+        target.style.height = `${height}px`;
+        target.style.transform = drag.transform;
+
+        onUpdateSize?.(width, height); // ✅ update ukuran ke parent
+        onUpdateTransform?.(drag.transform); // ✅ update transform ke parent
       }}
-      onRotate={(e) => {
-        e.target.style.transform = e.drag.transform;
+      onRotate={({ target, drag }) => {
+        target.style.transform = drag.transform;
+        onUpdateTransform?.(drag.transform);
       }}
     />
   );
