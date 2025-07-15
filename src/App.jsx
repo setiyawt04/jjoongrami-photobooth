@@ -1,33 +1,17 @@
-import Home from "./pages/Home"
-import Design from "./pages/Design"
-import bgImage from "./assets/images/bg.jpg"
-
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Homes from "./pages/Homes"
+import Design from "./pages/Design"
+import Sample from "./pages/Sample"
 
 function App() {
- 
   return (
-    <div className="sm:min-h-screen sm:flex sm:items-center sm:justify-center bg-white" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover'}}>
-      <BrowserRouter>
-        <Routes>
-          
-            <Route path="/" element={<Home />}/>
-            {/* <Route path="/sample" element={<Sample />}/>
-            <Route path="/sample-preview" element={<SamplePreview />}/> */}
-            <Route 
-              path="/design"
-              element={
-
-                  <Design />
-               
-              }/>
-            {/* <Route path="/result" element={<Result/>}/> */}
-
-        </Routes>
-        
-      </BrowserRouter>
-    </div>
-
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element= {<Homes/>}/>
+        <Route path="/design" element={<Design/>}/>
+        <Route path="/sample" element={<Sample/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

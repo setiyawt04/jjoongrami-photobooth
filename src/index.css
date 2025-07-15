@@ -13,7 +13,7 @@
 
 
 .animate-floaty {
-  animation: floaty 1s forwards;
+  animation: floaty 1.5s forwards;
 }
 
 @keyframes floaty2 {
