@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight, faArrowRotateLeft, faPaintBrush, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +9,9 @@ import Move from "../components/Move.jsx";
 import html2canvas from "html2canvas";
 
 function Design() {
+  const navigate = useNavigate(); // ← ini yang kamu cari
+  const location = useLocation();
+
   let preview = location.state?.preview;
   if (!preview) {
     preview = localStorage.getItem("savedPreview");
@@ -18,7 +22,10 @@ function Design() {
       <div className="flex flex-col items-center justify-center h-screen p-10 text-center">
         <p className="text-lg mb-4">No image found. Please take a photo first.</p>
         <button
-          onClick={() => navigate("/")}
+          onClick={() => {
+            localStorage.removeItem("savedPreview");
+            navigate("/");
+          }}
           className="bg-black text-white px-6 py-2 rounded-xl"
         >
           Back to Home
@@ -26,6 +33,7 @@ function Design() {
       </div>
     );
   }
+
 
   const [showSticker, setShowSticker] = useState(false);
   const [stickers, setStickers] = useState([]);

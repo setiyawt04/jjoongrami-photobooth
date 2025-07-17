@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { PropagateLoader } from "react-spinners";
-import Video from '../assets/images/vid.mp4'
+import Video from '../assets/images/video1.mp4'
 import bgImage from '../assets/images/bg.jpg'
 
 function Home() {
