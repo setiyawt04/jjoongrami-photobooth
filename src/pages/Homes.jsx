@@ -17,75 +17,13 @@ function Homes() {
 
     //take photo
     const photoInput = useRef(null)
-    const photoSave = () => {
-        photoInput.current.click();
-    }
+
 
     //preview photo
     const [preview, setPreview] = useState("")
     const navigate = useNavigate()
     const [fileName, setFileName] = useState("")
     const [isLoading, setIsLoading] = useState(false)
-    //final photo
-    const MAX_WIDTH = 500; // or whatever size you want
-
-    const photo = (e) => {
-        setTimeout(() => {
-            const userPhoto = e.target.files[0];
-            if (!userPhoto) return;
-
-            console.log(userPhoto);
-            setIsLoading(true);
-            setFileName(userPhoto.name || "photo-" + Date.now() + ".jpg");
-
-            const reader = new FileReader();
-
-            reader.onloadend = () => {
-                const base64 = reader.result;
-
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement("canvas");
-
-                    let width = img.width;
-                    let height = img.height;
-
-                    // Resize logic: maintain aspect ratio
-                    if (width > MAX_WIDTH) {
-                        height *= MAX_WIDTH / width;
-                        width = MAX_WIDTH;
-                    }
-
-                    canvas.width = width;
-                    canvas.height = height;
-
-                    const ctx = canvas.getContext("2d");
-                    ctx.drawImage(img, 0, 0, width, height);
-
-                    const resizedBase64 = canvas.toDataURL("image/jpeg", 0.8); // quality 80%
-
-                    // Save resized image
-                    localStorage.setItem("savedPreview", resizedBase64);
-                    setPreview(resizedBase64);
-                    setIsLoading(false);
-
-                    // If you wanna navigate after:
-                    navigate("/design", { state: { preview: resizedBase64 } });
-                };
-
-                img.onerror = () => {
-                    console.error("⚠️ Failed to load image for resizing");
-                    setIsLoading(false);
-                };
-
-                img.src = base64;
-            };
-
-            reader.readAsDataURL(userPhoto);
-        }, 500)
-    };
-
-
 
     return (
         <div className="sm:w-full sm:h-screen flex items-center justify-center" style={bgStyle}>
@@ -119,20 +57,42 @@ function Homes() {
                         <nav className="animate-floaty">
                             <h1 className="text-2xl mb-7 text-[#3A2724] font-bold animate-bounce">Jjoongrami's Photobooth</h1>
                             <ul className="flex flex-col gap-3">
-                                <li className={liClassStyle} >
-                                    <button type="button" onClick={photoSave}>
-                                        Take A Photo
-                                    </button>
-                                    <input
-                                        type="file"
-                                        ref={photoInput}
-                                        accept="image/*"
-                                        capture="user"
-                                        style={{ display: 'none' }}
-                                        onChange={photo}
-                                    />
+                                <li
+                                    className={liClassStyle}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        photoInput.current?.click();
+                                    }}
+                                >
+                                    Take A Photo
                                 </li>
+                                <input
+                                    type="file"
+                                    id="photo-input"
+                                    ref={photoInput}
+                                    name="picture"
+                                    accept="image/*"
+                                    capture="environment"
+                                    style={{ display: 'none' }}
+                                    onChange={(e) => {
+                                        
 
+                                        const file = e.target.files[0];
+                                        if (!file) return;
+
+                                        
+                                        localStorage.clear(); 
+                                        const reader = new FileReader();
+                                        reader.onloadend = () => {
+                                            const base64 = reader.result;
+                                            localStorage.setItem("savedPreview", base64);
+                                            
+                                             navigate("/design", { state: { preview: base64 } });
+                                        };
+                                        reader.readAsDataURL(file);
+                                    }}
+                                />
 
                                 <li className={liClassStyle}>Choose From Gallery</li>
                                 <li className={liClassStyle}>Try Sample Photo</li>
