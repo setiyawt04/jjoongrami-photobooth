@@ -3,8 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import bg from "../assets/images/bg.jpg"
 import video from "../assets/images/video1.mp4"
 import { PulseLoader } from "react-spinners";
+import Camera from "../components/Camera";
 
 function Home() {
+    const [showCamera, setShowCamera] = useState(false);
+
+
     const bgStyle = {
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
@@ -22,18 +26,13 @@ function Home() {
     //preview photo
     const [preview, setPreview] = useState("")
     const navigate = useNavigate()
-    const [fileName, setFileName] = useState("")
-    const [isLoading, setIsLoading] = useState(false)
+    
 
     return (
+        
         <div className="sm:w-full sm:h-screen flex items-center justify-center" style={bgStyle}>
-            {isLoading && (
-                <div className="fixed inset-0 bg-white/80 z-50 flex flex-col items-center justify-center">
-                    <PulseLoader color="#3A2724" size={15} />
-                    <p className="mt-4 text-[#3A2724] text-sm font-medium">Processing your photo...</p>
-                </div>
-            )}
             <div className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[40vw] sm:w-[50vw] sm:h-[90vh]">
+                {showCamera && <Camera/>}
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover"
                     autoPlay
@@ -62,37 +61,12 @@ function Home() {
                                     onClick={(e) => {
                                         e.preventDefault();
                                         e.stopPropagation();
-                                        photoInput.current?.click();
+                                        setShowCamera(prev => !prev);
                                     }}
                                 >
                                     Take A Photo
                                 </li>
-                                <input
-                                    type="file"
-                                    id="photo-input"
-                                    ref={photoInput}
-                                    name="picture"
-                                    accept="image/*"
-                                    capture="environment"
-                                    style={{ display: 'none' }}
-                                    onChange={(e) => {
-                                        
-
-                                        const file = e.target.files[0];
-                                        if (!file) return;
-
-                                        
-                                        localStorage.clear(); 
-                                        const reader = new FileReader();
-                                        reader.onloadend = () => {
-                                            const base64 = reader.result;
-                                            localStorage.setItem("savedPreview", base64);
-                                            
-                                             navigate("/design", { state: { preview: base64 } });
-                                        };
-                                        reader.readAsDataURL(file);
-                                    }}
-                                />
+                                
 
                                 <li className={liClassStyle}>Choose From Gallery</li>
                                 <li className={liClassStyle}>Try Sample Photo</li>
