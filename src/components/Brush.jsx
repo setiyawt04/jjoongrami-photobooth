@@ -1,9 +1,7 @@
-import { ReactSketchCanvas } from "react-sketch-canvas";
-import { useState } from "react";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faUndo, faRedo, faEraser, faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Brush({ colorBrush, setColorBrush, cross }) {
+export default function Brush({ colorBrush, setColorBrush, cross, eraser, undo, redo, clear }) {
   
   const colors = [
     "#FFB6C1", // light pink
@@ -25,7 +23,14 @@ export default function Brush({ colorBrush, setColorBrush, cross }) {
     <div className="bg-pink-100 sm:w-[350px] sm:h-[80px] pl-4 pr-4 pt-2 pb-2 rounded-xl mx-auto mt-5">
       <div className="flex justify-between items-center">
         <h1 className="text-pink-300 mb-3 font-bold">Pick Your Color!</h1>
-        <FontAwesomeIcon icon={faXmark} className="text-red-500 text-xl" onClick={cross} />
+        <div className="flex justify-between items-center mb-2 gap-3">
+          <FontAwesomeIcon icon={faUndo} className="text-pink-300 font-bold" onClick={undo}/>
+          <FontAwesomeIcon icon={faRedo} className="text-pink-300 font-bold" onClick={redo}/>
+          <FontAwesomeIcon icon={faEraser} className="text-pink-300 font-bold" onClick={eraser}/>
+          <FontAwesomeIcon icon={faRefresh} className="text-pink-300 font-bold" onClick={clear}/>
+          <FontAwesomeIcon icon={faXmark} className="text-red-500 font-bold text-xl" onClick={cross} />
+        </div>
+        
       </div>
       <div className="w-full overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-pink-300 scrollbar-track-pink-100 scroll-smooth">
         <div className=" w-[30vw] flex items-center min-w-max gap-2">
