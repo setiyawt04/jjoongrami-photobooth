@@ -1,5 +1,4 @@
 import { useState, useRef } from "react"
-import { useNavigate } from 'react-router-dom';
 import bg from "../assets/images/bg.jpg"
 import video from "../assets/images/video1.mp4"
 import { PulseLoader } from "react-spinners";
@@ -23,10 +22,8 @@ function Home() {
     const photoInput = useRef(null)
 
 
-    //preview photo
-    const [preview, setPreview] = useState("")
-    const navigate = useNavigate()
     
+
 
     return (
         

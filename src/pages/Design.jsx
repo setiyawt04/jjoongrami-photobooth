@@ -16,7 +16,7 @@ import Brush from "../components/Brush.jsx";
 function Design() {
 
   const [colorBrush, setColorBrush] = useState("");
-
+  const navigate = useNavigate()
   const bgStyle = {
     backgroundImage: `url(${bg})`,
     backgroundSize: 'cover',
@@ -30,7 +30,6 @@ function Design() {
   }
   const [showBrush, setShowBrush] = useState(false);
 
-  const navigate = useNavigate();
   const location = useLocation();
   const [preview, setPreview] = useState(() => {
     return location.state?.preview || localStorage.getItem("savedPreview");
@@ -202,7 +201,7 @@ function Design() {
           }}
         >
           <div className="flex justify-between items-center w-full h-[10vh] p-5">
-            <button className="text-xl italic font-bold text-[#CD784C]" onClick={()=>{navigate('/')}}>Back</button>
+            <button className="text-xl italic font-bold text-[#CD784C]" onClick={() => navigate('/')}>Back</button>
             <button onClick={handleSaveImage} className="text-xl italic font-bold text-[#8FD9FB]">Save</button>
           </div>
 
