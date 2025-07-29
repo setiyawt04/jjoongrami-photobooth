@@ -32,27 +32,20 @@ function Design() {
 
   const location = useLocation();
   const [preview, setPreview] = useState(() => {
-    return location.state?.preview || localStorage.getItem("savedPreview");
+    const previewFromState = location.state?.preview;
+    if (previewFromState) {
+      localStorage.setItem("savedPreview", previewFromState); // Simpan baru
+      return previewFromState;
+    }
+    return localStorage.getItem("savedPreview");
   });
-  const [loading, setLoading] = useState(!preview);
 
   useEffect(() => {
-    if (!preview) {
-      const timer = setTimeout(() => {
-        const saved = localStorage.getItem("savedPreview");
-        if (saved) {
-          setPreview(saved);
-          setLoading(false);
-        } else {
-          setLoading(false);
-        }
-      }, 300);
+    return () => {
+      localStorage.removeItem("savedPreview");
+    };
+  }, []);
 
-      return () => clearTimeout(timer);
-    } else {
-      setLoading(false);
-    }
-  }, [preview]);
 
 
   if (!preview) {
@@ -78,16 +71,9 @@ function Design() {
   const [activeIndex, setActiveIndex] = useState(null);
   const canvasRef = useRef(null);
   const brushRef = useRef(null);
-  const [exportSize, setExportSize] = useState({ width: 720, height: 1280 });
   const [eraseMode, setEraseMode] = useState(false);
 
-  useEffect(() => {
-    if (canvasRef.current) {
-      const w = canvasRef.current.offsetWidth;
-      const h = canvasRef.current.offsetHeight;
-      setExportSize({ width: w, height: h });
-    }
-  }, []);
+
 
   const handleSelect = (sticker) => {
     const newRef = React.createRef();
@@ -115,37 +101,20 @@ function Design() {
   const handleSaveImage = async () => {
     const uiElement = canvasRef.current;
 
-    // Screenshot elemen dengan scale tinggi (biar hasil tajem)
-    const originalCanvas = await html2canvas(uiElement, {
-      backgroundColor: null,
+    const canvas = await html2canvas(uiElement, {
       useCORS: true,
-      scale: 4, // ✅ Ubah ini jadi 3 atau 4
-      removeContainer: true
+      backgroundColor: '#000',
+      scale: 1,
     });
 
-    const exportCanvas = document.createElement("canvas");
-    const ctx = exportCanvas.getContext("2d");
-
-    const exportWidth = 720;
-    const exportHeight = 1280;
-
-    exportCanvas.width = exportWidth;
-    exportCanvas.height = exportHeight;
-
-    const scale = Math.min(exportWidth / originalCanvas.width, exportHeight / originalCanvas.height);
-    const offsetX = (exportWidth - originalCanvas.width * scale) / 2;
-    const offsetY = (exportHeight - originalCanvas.height * scale) / 2;
-
-    ctx.save();
-    ctx.scale(scale, scale);
-    ctx.drawImage(originalCanvas, offsetX / scale, offsetY / scale);
-    ctx.restore();
-
+    // Download
     const link = document.createElement("a");
-    link.download = "photobooth-preview-HD.jpg";
-    link.href = exportCanvas.toDataURL("image/jpeg", 1.0);
+    link.download = "photobooth-preview-HD.png";
+    link.href = canvas.toDataURL("image/png", 1.0);
     link.click();
   };
+
+
 
   const handleDelete = (index) => {
     setStickers((prev) => prev.filter((_, i) => i !== index));
@@ -207,22 +176,29 @@ function Design() {
 
           <div
             ref={canvasRef}
-            className="relative sm:w-[350px] sm:h-[400px] overflow-hidden mx-auto w-[500px] h-[1080px]"
+            style={{
+              width: '350px',
+              height: '400px',
+              position: 'relative',
+              overflow: 'hidden',
+              backgroundColor: '#000',
+              margin: 'auto',
+              borderRadius: '15px'
+            }}
           >
-            <div
+            <img
+              src={preview}
               style={{
-                backgroundImage: `url(${preview})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                zIndex: 0,
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                maxWidth: '100%',
+                maxHeight: '100%',
               }}
-            ></div>
+              crossOrigin="anonymous"
+              alt=""
+            />
 
             <ReactSketchCanvas
               ref={brushRef}

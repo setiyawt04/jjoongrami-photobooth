@@ -2,6 +2,7 @@
 @import 'tailwind-scrollbar-hide/v4';
 @plugin 'tailwind-scrollbar';
 
+
 @keyframes floaty {
   0%  {
     transform: translateY(0px);

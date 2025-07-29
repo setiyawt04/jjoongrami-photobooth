@@ -1,8 +1,8 @@
 import { useState, useRef } from "react"
 import bg from "../assets/images/bg.jpg"
 import video from "../assets/images/video1.mp4"
-import { PulseLoader } from "react-spinners";
 import Camera from "../components/Camera";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
     const [showCamera, setShowCamera] = useState(false);
@@ -18,12 +18,22 @@ function Home() {
     //func for button Let's Go
     const [letsGo, setLetsGo] = useState(false)
 
-    //take photo
-    const photoInput = useRef(null)
+    //input photo
+    const inputPhoto = useRef()
 
+    //handle choose from file
+    const navigate = useNavigate();
+    const handleFromFile = (e) => {
+        const file = e.target.files[0]
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const preview = e.target.result
+            localStorage.setItem("savedPreview", preview);
 
-    
-
+            navigate("/design", { state: {preview}})
+        }
+        reader.readAsDataURL(file)
+    }
 
     return (
         
@@ -65,7 +75,14 @@ function Home() {
                                 </li>
                                 
 
-                                <li className={liClassStyle}>Choose From Gallery</li>
+                                <li className={liClassStyle} onClick={()=>{inputPhoto.current && inputPhoto.current.click()}}>Choose From Gallery</li>
+                                <input
+                                    ref={inputPhoto}
+                                    type="file"
+                                    accept="image/png, image/jpeg, image/jpg"
+                                    style={{display:"none"}}
+                                    onChange={handleFromFile}
+                                />
                                 <li className={liClassStyle}>Try Sample Photo</li>
                             </ul>
 
