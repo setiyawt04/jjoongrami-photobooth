@@ -46,7 +46,7 @@ function Design() {
         } else {
           setLoading(false);
         }
-      }, 300); 
+      }, 300);
 
       return () => clearTimeout(timer);
     } else {
@@ -209,19 +209,21 @@ function Design() {
             ref={canvasRef}
             className="relative sm:w-[350px] sm:h-[400px] overflow-hidden mx-auto w-[500px] h-[1080px]"
           >
-            <img
-              src={preview}
-              alt="photo"
+            <div
               style={{
+                backgroundImage: `url(${preview})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
                 width: "100%",
                 height: "100%",
                 position: "absolute",
-
                 top: 0,
                 left: 0,
                 zIndex: 0,
               }}
-            />
+            ></div>
+
             <ReactSketchCanvas
               ref={brushRef}
               width="100%"
