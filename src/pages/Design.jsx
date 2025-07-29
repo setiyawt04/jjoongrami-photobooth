@@ -212,10 +212,12 @@ function Design() {
               strokeColor={colorBrush}
               canvasColor="transparent"
               style={{
-                border: "none"
+                border: "none",
+                pointerEvents: showBrush ? "auto" : "none"
               }}
               className="absolute top-0 left-0 z-10"
             />
+
 
             {stickers.map((sticker, index) => (
               <div
@@ -244,12 +246,17 @@ function Design() {
                   {activeIndex === index && (
                     <FontAwesomeIcon
                       icon={faXmark}
-                      className="absolute p-1 -top-0 -right-7 bg-blue-300 text-white text-lg cursor-pointer z-50 shadow"
+                      className="absolute p-1 -top-0 -right-7 bg-blue-300 text-white text-lg cursor-pointer pointer-events-auto z-50 shadow"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleDelete(index);
                       }}
+                      onTouchStart={(e) => {
+                        e.stopPropagation();
+                        handleDelete(index);
+                      }}
                     />
+
                   )}
                   <img
                     src={sticker.img?.src}
