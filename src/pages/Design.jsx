@@ -33,12 +33,16 @@ function Design() {
   const location = useLocation();
   const [preview, setPreview] = useState(() => {
     const previewFromState = location.state?.preview;
+
     if (previewFromState) {
-      localStorage.setItem("savedPreview", previewFromState); // Simpan baru
+      localStorage.setItem("savedPreview", JSON.stringify(previewFromState));
       return previewFromState;
     }
-    return localStorage.getItem("savedPreview");
+
+    const savedPreview = localStorage.getItem("savedPreview");
+    return savedPreview ? JSON.parse(savedPreview) : null;
   });
+
 
   useEffect(() => {
     return () => {

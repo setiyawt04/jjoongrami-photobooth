@@ -1,13 +1,9 @@
 import { useState, useRef } from "react"
 import bg from "../assets/images/bg.jpg"
 import video from "../assets/images/video1.mp4"
-import Camera from "../components/Camera";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-    const [showCamera, setShowCamera] = useState(false);
-
-
     const bgStyle = {
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
@@ -39,7 +35,7 @@ function Home() {
         
         <div className="sm:w-full sm:h-screen flex items-center justify-center" style={bgStyle}>
             <div className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[40vw] sm:w-[50vw] sm:h-[90vh]">
-                {showCamera && <Camera/>}
+                
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover"
                     autoPlay
@@ -59,17 +55,12 @@ function Home() {
 
                     ) : (
 
-
                         <nav className="animate-floaty">
                             <h1 className="text-2xl mb-7 text-[#3A2724] font-bold animate-bounce">Jjoongrami's Photobooth</h1>
                             <ul className="flex flex-col gap-3">
                                 <li
                                     className={liClassStyle}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        e.stopPropagation();
-                                        setShowCamera(prev => !prev);
-                                    }}
+                                    onClick={(e) => {navigate('/camera')}}
                                 >
                                     Take A Photo
                                 </li>
@@ -83,7 +74,7 @@ function Home() {
                                     style={{display:"none"}}
                                     onChange={handleFromFile}
                                 />
-                                <li className={liClassStyle}>Try Sample Photo</li>
+                                <li className={liClassStyle} onClick={()=>{navigate('/sample')}}>Try Sample Photo</li>
                             </ul>
 
                         </nav>
