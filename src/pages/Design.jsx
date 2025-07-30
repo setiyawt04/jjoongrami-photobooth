@@ -11,12 +11,15 @@ import bg from "../assets/images/276.jpg";
 import bgdesign from "../assets/images/design-bg.jpg"
 import { ReactSketchCanvas } from "react-sketch-canvas";
 import Brush from "../components/Brush.jsx";
+import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 
 
 function Design() {
 
   const [colorBrush, setColorBrush] = useState("");
   const navigate = useNavigate()
+
+
   const bgStyle = {
     backgroundImage: `url(${bg})`,
     backgroundSize: 'cover',
@@ -113,7 +116,7 @@ function Design() {
 
     // Download
     const link = document.createElement("a");
-    link.download = "photobooth-preview-HD.png";
+    link.download = "jjoongrami-photobooth.png";
     link.href = canvas.toDataURL("image/png", 1.0);
     link.click();
   };
@@ -148,177 +151,199 @@ function Design() {
       onClick={() => handleSelect(sticker)}
     />
   ));
+  const [canvasSize, setCanvasSize] = useState('350px');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        setCanvasSize({ width: '350px', height: '400px' });
+      } else if (window.innerWidth > 768) {
+        setCanvasSize({ width: '325px', height: '450px' });
+      } else {
+        setCanvasSize({ width: '320px', height: '500px' })
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <>
-      {showSticker && (
-        <div className="sm:w-full sm:h-screen flex items-center justify-center" style={bgDesign}>
-          <div className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[40vw] sm:w-[50vw] sm:h-[90vh]" style={bgStyle}>
+      <div className="sm:w-full sm:h-screen flex items-center justify-center" style={bgDesign}>
+        {!showSticker ? (
+          <div
+            className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[42vw] sm:w-[55vw] sm:h-[90vh]" style={bgStyle}
+            onClick={(e) => {
+              if (!e.target.closest(".sticker-box")) setActiveIndex(null);
+            }}
+          >
+            <div className="flex justify-between items-center w-full h-[10vh] p-5">
+              <button className="text-xl italic font-bold text-[#CD784C]" onClick={() => navigate('/')}>Back</button>
+              <button onClick={handleSaveImage} className="text-xl italic font-bold text-[#8FD9FB]">Save</button>
+            </div>
+
+            <div
+              ref={canvasRef}
+              style={{
+                width: canvasSize.width,
+                height: canvasSize.height,
+                position: 'relative',
+                overflow: 'hidden',
+                backgroundColor: '#000',
+                margin: 'auto',
+                borderRadius: '15px'
+              }}
+            >
+              <img
+                src={preview}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  margin: 'auto'
+                }}
+                crossOrigin="anonymous"
+                alt=""
+              />
+
+              <ReactSketchCanvas
+                ref={brushRef}
+                width="100%"
+                height="100%"
+                strokeWidth={4}
+                strokeColor={colorBrush}
+                canvasColor="transparent"
+                style={{
+                  border: "none",
+                  pointerEvents: showBrush ? "auto" : "none"
+                }}
+                className="absolute top-0 left-0 z-10"
+              />
+
+
+              {stickers.map((sticker, index) => (
+                <div
+                  key={index}
+                  className="absolute z-50 sticker-box"
+                  style={{
+                    top: `${sticker.position.top}px`,
+                    left: `${sticker.position.left}px`,
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveIndex(index);
+                  }}
+
+                >
+
+                  <div
+                    ref={sticker.ref}
+                    className="relative select-none"
+                    style={{
+                      width: `${sticker.width}px`,
+                      height: `${sticker.height}px`,
+                      transform: sticker.transform || "translate(0px, 0px)",
+                    }}
+                  >
+                    {activeIndex === index && (
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        className="absolute p-1 -top-0 -right-7 bg-blue-300 text-white text-lg cursor-pointer pointer-events-auto z-50 shadow"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(index);
+                        }}
+                        onTouchStart={(e) => {
+                          e.stopPropagation();
+                          handleDelete(index);
+                        }}
+                      />
+
+                    )}
+                    <img
+                      src={sticker.img?.src}
+                      alt={sticker.img?.alt}
+                      className="w-full h-full object-contain "
+                    />
+
+                  </div>
+                  {activeIndex === index && (
+                    <Move
+                      targetRef={sticker.ref}
+                      onUpdateTransform={(newTransform) => {
+                        setStickers((prev) => {
+                          const updated = [...prev];
+                          updated[index] = {
+                            ...updated[index],
+                            transform: newTransform,
+                          };
+                          return updated;
+                        });
+                      }}
+
+                      onUpdateSize={(width, height) => {
+                        setStickers((prev) => {
+                          const updated = [...prev];
+                          updated[index] = {
+                            ...updated[index],
+                            width,
+                            height,
+                          };
+                          return updated;
+                        });
+                      }}
+
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {showBrush && (
+              <Brush
+                colorBrush={colorBrush}
+                setColorBrush={setColorBrush}
+                cross={() => setShowBrush(false)}
+                eraser={handleEraserClick}
+                undo={handleUndoClick}
+                redo={handleRedoClick}
+                clear={handleClearClick}
+              />
+            )}
+
+            <div className="flex justify-between items-center w-[85vw] sm:w-[26vw] mx-auto gap-2 sm:gap-5 mt-8">
+              <button className="bg-[#8FD9FB] w-[65vw] lg:w-[60vw] p-3 text-[#CD784C] text-xl italic font-bold rounded-xl" onClick={handleSticker}>Sticker</button>
+              <button className="bg-[#8FD9FB] w-[15vw] lg:w-[10vw] p-3 text-xl rounded-xl" onClick={() => { setShowBrush(true) }}>
+                <FontAwesomeIcon className="text-xl italic font-bold text-[#CD784C]" icon={faPaintBrush} />
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+        ) : (
+          <div className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[45vw] sm:w-[55vw] sm:h-[90vh]" style={bgStyle}>
             <h1 className="absolute text-2xl text-black top-6 left-6">Pick your sticker!</h1>
             <button onClick={() => setShowSticker(false)} className="cursor-pointer">
               <FontAwesomeIcon icon={faXmark} className="absolute top-6 right-6 text-red-500 text-3xl" />
             </button>
-            <div className='w-[85vw] h-[75vh] sm:w-[26vw] sm:h-[70vh] absolute top-20 left-1/2 -translate-x-1/2  rounded-2xl border-blue-100 border-2' style={bgDesign}>
-              <div className="absolute flex gap-3 overflow-y-auto max-h-[62vh] mt-5 mb-5 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-300 rounded-xl flex-wrap justify-center items-center">
+            <div className='w-[90vw] h-[75vh] lg:w-[27vw] lg:h-[72vh] absolute top-20 left-1/2 -translate-x-1/2  rounded-2xl border-blue-100 border-2' style={bgDesign}>
+              <div className="absolute flex gap-3 overflow-y-auto max-h-[69vh] lg:max-h-[65vh] mt-5 mb-5 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-300 rounded-xl flex-wrap justify-center items-center">
                 {stickerElements}
               </div>
             </div>
           </div>
-        </div>
-      )}
-      <div className="sm:w-full sm:h-screen flex items-center justify-center" style={bgDesign}>
-        <div
-          className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[40vw] sm:w-[50vw] sm:h-[90vh]" style={bgStyle}
-          onClick={(e) => {
-            if (!e.target.closest(".sticker-box")) setActiveIndex(null);
-          }}
-        >
-          <div className="flex justify-between items-center w-full h-[10vh] p-5">
-            <button className="text-xl italic font-bold text-[#CD784C]" onClick={() => navigate('/')}>Back</button>
-            <button onClick={handleSaveImage} className="text-xl italic font-bold text-[#8FD9FB]">Save</button>
-          </div>
+        )
 
-          <div
-            ref={canvasRef}
-            style={{
-              width: '350px',
-              height: '400px',
-              position: 'relative',
-              overflow: 'hidden',
-              backgroundColor: '#000',
-              margin: 'auto',
-              borderRadius: '15px'
-            }}
-          >
-            <img
-              src={preview}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                maxWidth: '100%',
-                maxHeight: '100%',
-              }}
-              crossOrigin="anonymous"
-              alt=""
-            />
-
-            <ReactSketchCanvas
-              ref={brushRef}
-              width="100%"
-              height="100%"
-              strokeWidth={4}
-              strokeColor={colorBrush}
-              canvasColor="transparent"
-              style={{
-                border: "none",
-                pointerEvents: showBrush ? "auto" : "none"
-              }}
-              className="absolute top-0 left-0 z-10"
-            />
+        }
 
 
-            {stickers.map((sticker, index) => (
-              <div
-                key={index}
-                className="absolute z-50 sticker-box"
-                style={{
-                  top: `${sticker.position.top}px`,
-                  left: `${sticker.position.left}px`,
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActiveIndex(index);
-                }}
-
-              >
-
-                <div
-                  ref={sticker.ref}
-                  className="relative select-none"
-                  style={{
-                    width: `${sticker.width}px`,
-                    height: `${sticker.height}px`,
-                    transform: sticker.transform || "translate(0px, 0px)",
-                  }}
-                >
-                  {activeIndex === index && (
-                    <FontAwesomeIcon
-                      icon={faXmark}
-                      className="absolute p-1 -top-0 -right-7 bg-blue-300 text-white text-lg cursor-pointer pointer-events-auto z-50 shadow"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleDelete(index);
-                      }}
-                      onTouchStart={(e) => {
-                        e.stopPropagation();
-                        handleDelete(index);
-                      }}
-                    />
-
-                  )}
-                  <img
-                    src={sticker.img?.src}
-                    alt={sticker.img?.alt}
-                    className="w-full h-full object-contain "
-                  />
-
-                </div>
-                {activeIndex === index && (
-                  <Move
-                    targetRef={sticker.ref}
-                    onUpdateTransform={(newTransform) => {
-                      setStickers((prev) => {
-                        const updated = [...prev];
-                        updated[index] = {
-                          ...updated[index],
-                          transform: newTransform,
-                        };
-                        return updated;
-                      });
-                    }}
-
-                    onUpdateSize={(width, height) => {
-                      setStickers((prev) => {
-                        const updated = [...prev];
-                        updated[index] = {
-                          ...updated[index],
-                          width,
-                          height,
-                        };
-                        return updated;
-                      });
-                    }}
-
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-
-          {showBrush && (
-            <Brush
-              colorBrush={colorBrush}
-              setColorBrush={setColorBrush}
-              cross={() => setShowBrush(false)}
-              eraser={handleEraserClick}
-              undo={handleUndoClick}
-              redo={handleRedoClick}
-              clear={handleClearClick}
-            />
-          )}
-
-          <div className="flex justify-between items-center w-[85vw] sm:w-[26vw] mx-auto gap-5 mt-7">
-            <button className="bg-[#8FD9FB] w-[60vw] pt-3 pr-8 pl-8 pb-3 text-[#CD784C] text-xl italic font-bold rounded-xl" onClick={handleSticker}>Sticker</button>
-            <button className="bg-[#8FD9FB] w-[10vw] p-3 rounded-xl" onClick={() => { setShowBrush(true) }}>
-              <FontAwesomeIcon className="text-xl italic font-bold text-[#CD784C]" icon={faPaintBrush} />
-
-            </button>
-
-          </div>
-
-        </div>
       </div>
     </>
   );

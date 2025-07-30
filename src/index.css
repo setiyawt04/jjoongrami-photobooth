@@ -2,6 +2,40 @@
 @import 'tailwind-scrollbar-hide/v4';
 @plugin 'tailwind-scrollbar';
 
+@font-face {
+  font-family: 'Waterlily';
+  src: url('./assets/font/Waterlily.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-waterlily {
+  font-family: 'Waterlily', cursive;
+}
+
+.font-outline {
+  -webkit-text-stroke: 1px #845816;
+}
+
+.font-outline2 {
+  -webkit-text-stroke: 1px #f1e0d0;
+}
+
+@keyframes bouncy {
+  0% {
+    transform: translateY(-15px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-bouncy {
+  animation: bouncy 1.5s ease-in-out infinite;
+}
 
 @keyframes floaty {
   0%  {

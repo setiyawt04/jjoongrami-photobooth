@@ -1,4 +1,3 @@
-import { useState } from "react";
 import sampleBg from "../assets/images/1913.jpg"
 import bg from "../assets/images/bg.jpg";
 import data from "../photoSample.js"
@@ -20,20 +19,20 @@ function Sample() {
     }
     return (
         <div className="sm:w-full sm:h-screen flex items-center justify-center" style={bgStyle}>
-            <div className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[40vw] sm:w-[50vw] sm:h-[90vh]">
+            <div className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[42vw] sm:w-[55vw] sm:h-[90vh]">
                 <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center flex-col z-20" style={bgSample}>
-                    <div className="flex justify-between items-center w-full h-[10vh] px-5">
-                        <button className="text-xl italic font-bold text-[#CD784C]" onClick={() => navigate('/')}>Back</button>
+                    <div className="absolute top-0 left-0 flex justify-between items-center w-full h-[10vh] px-5">
+                        <button className="text-xl italic font-bold text-[#9BD0DA]" onClick={() => navigate('/')}>Back</button>
                         <p>Ready</p>
                     </div>
-                    <div className="sm:w-[350px] sm:h-[450px] rounded-xl shadow-lg p-5 overflow-x-auto">
+                    <div className="w-[330px] h-[600px] lg:w-[350px] lg:mt-8 bg-yellow-50 lg:h-[500px] rounded-xl shadow-lg p-5 overflow-x-auto">
                         <div className="flex flex-wrap gap-4">
                             {data.map(image => (
                                 <div key={image.id} className="w-[calc(50%-0.5rem)] cursor-pointer" onClick={()=> handleClick(image.id)}>
                                     <img
                                         src={image.img.src}
                                         alt={image.img.alt}
-                                        className="rounded-xl w-full h-[200px] object-cover"
+                                        className="rounded-xl w-full h-full object-cover"
                                     />
                                 </div>
                             ))}

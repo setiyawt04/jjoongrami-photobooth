@@ -20,7 +20,7 @@ export default function Brush({ colorBrush, setColorBrush, cross, eraser, undo, 
     "#B5EAD7", // mint milk
   ]
   return (
-    <div className="bg-pink-100 sm:w-[350px] sm:h-[80px] pl-4 pr-4 pt-2 pb-2 rounded-xl mx-auto mt-5">
+    <div className="w-[320px] h-[90px] bg-pink-100 lg:w-[350px] lg:h-[80px] pl-4 pr-4 pt-2 pb-2 rounded-xl mx-auto mt-5">
       <div className="flex justify-between items-center">
         <h1 className="text-pink-300 mb-3 font-bold">Pick Your Color!</h1>
         <div className="flex justify-between items-center mb-2 gap-3">
@@ -33,7 +33,7 @@ export default function Brush({ colorBrush, setColorBrush, cross, eraser, undo, 
         
       </div>
       <div className="w-full overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-pink-300 scrollbar-track-pink-100 scroll-smooth">
-        <div className=" w-[30vw] flex items-center min-w-max gap-2">
+        <div className="w-[30vw] flex items-center min-w-max gap-2 mt-2 lg:mt-0">
           {
             colors.map((color, id) => (
               <button
