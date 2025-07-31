@@ -3,7 +3,7 @@ export default function Sticker({sticker, onClick}) {
   return (
     <div
       onClick={onClick} 
-      className="w-16 h-16 lg:w-17 lg:h-17 p-3 bg-amber-100 rounded-md flex items-center justify-center shadow-md">
+      className="w-16 h-16 lg:w-17 lg:h-17 p-3 bg-amber-100 hover:translate-y-1 rounded-md flex items-center justify-center shadow-md">
         
         
         <img 

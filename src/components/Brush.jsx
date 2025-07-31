@@ -47,8 +47,9 @@ export default function Brush({ setColorBrush, cross, eraser, undo, redo, clear,
                   border: '1px solid white',
                   width: "24px",
                   height: "24px",
-                  cursor: 'pointer'
+                  cursor: 'pointer',
                 }}
+                className="transition duration-200 hover:grayscale"
               />
             ))
           }

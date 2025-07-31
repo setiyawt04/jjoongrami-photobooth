@@ -29,11 +29,11 @@ function Sample() {
                     <div className="w-[330px] h-[600px] lg:w-[350px] lg:mt-8 bg-yellow-50 lg:h-[500px] rounded-xl shadow-lg p-5 overflow-x-auto">
                         <div className="flex flex-wrap gap-4">
                             {data.map(image => (
-                                <div key={image.id} className="w-[calc(50%-0.5rem)] cursor-pointer" onClick={()=> handleClick(image.id)}>
+                                <div key={image.id} className="w-[calc(50%-0.5rem)] cursor-pointer group" onClick={()=> handleClick(image.id)}>
                                     <img
                                         src={image.img.src}
                                         alt={image.img.alt}
-                                        className="rounded-xl w-full h-full object-cover"
+                                        className="rounded-xl w-full h-full object-cover transition duration-300 group-hover:grayscale"
                                     />
                                 </div>
                             ))}
