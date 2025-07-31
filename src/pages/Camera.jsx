@@ -55,7 +55,7 @@ function Camera() {
           {!url ? (
             <>
               <div className="absolute top-0 left-0 flex justify-between items-center w-full h-[10vh] px-5">
-                <button className="text-2xl font-bold font-waterlily text-[#E45E9D] cursor-pointer font-outline2 hover:-translate-x-2 hover:text-[#CD784C]" onClick={() => {navigate('/'); handleClickSound()}}>Back</button>
+                <button className="text-2xl font-bold font-waterlily text-[#E45E9D] cursor-pointer font-outline2 hover:-translate-x-2 hover:text-[#E45E9D]" onClick={() => {navigate('/'); handleClickSound()}}>Back</button>
                 <p className="text-xl font-waterlily text-[#f1e0d0] rotate-4 animate-bounce">Ready, set… say cheeseee! 📸</p>
               </div>
               <div className="lg:mt-5 w-[330px] h-[530px] sm:w-[320px] md:w-[310px] lg:w-[350px] sm:h-[400px] rounded-xl shadow-lg">
@@ -71,7 +71,7 @@ function Camera() {
               <div className="flex w-full justify-center items-center">
                 <button
                   onClick={()=>{capturePhoto(); handleClickSound()}}
-                  className="cursor-pointer font-waterlily text-xl bg-[#f185b8] hover:-translate-y-2 hover:bg-[#E45E9D] text-white pt-3 pb-3 pl-20 pr-20 rounded-xl mt-6"
+                  className="cursor-pointer font-waterlily text-xl bg-[#f185b8] hover:translate-y-2 hover:bg-[#E45E9D] text-white pt-3 pb-3 pl-20 pr-20 rounded-xl mt-6"
                 >
                   Capture
                 </button>
@@ -93,13 +93,13 @@ function Camera() {
               <div className="w-full flex justify-center items-center gap-4 mt-6">
                 <button
                   onClick={() => {setUrl(null); handleClickSound()}}
-                  className="font-waterlily bg-[#f185b8] cursor-pointer hover:-translate-y-2 hover:bg-[#E45E9D] lg:text-xl text-[#D3DDD9] py-3 px-10 rounded-xl"
+                  className="font-waterlily bg-[#f185b8] cursor-pointer hover:translate-y-2 hover:bg-[#E45E9D] lg:text-xl text-white py-3 px-14 rounded-xl"
                 >
                   Retake
                 </button>
                 <button
                   onClick={()=>{handleFinish(); handleClickSound()}}
-                  className="bg-[#f77f6f] hover:-translate-y-2 font-waterlily hover:bg-[#DC6555] cursor-pointer  lg:text-xl text-[#D3DDD9] py-3 px-12 rounded-xl"
+                  className="bg-[#f77f6f] hover:translate-y-2 font-waterlily hover:bg-[#DC6555] cursor-pointer  lg:text-xl text-white py-3 px-16 rounded-xl"
                 >
                   Finish
                 </button>

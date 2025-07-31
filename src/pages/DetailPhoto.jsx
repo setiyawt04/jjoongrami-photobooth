@@ -30,8 +30,8 @@ function DetailPhoto() {
             <div className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[50vw] sm:w-[55vw] sm:h-[90vh]">
                 <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center flex-col z-20" style={bgSample}>
                     <div className="absolute top-0 left-0 flex justify-between items-center w-full h-[10vh] px-5">
-                        <button className="text-xl italic font-bold text-[#CD784C]" onClick={() => navigate('/sample')}>Back</button>
-                        <p>Ready</p>
+                        <button className="text-2xl font-bold font-waterlily text-[#1c61af] cursor-pointer hover:-translate-x-2 hover:text-[#013B7Dff]" onClick={() => {navigate('/sample'); handleClickSound()}}>Back</button>
+                        <p className="text-base lg:text-xl font-waterlily text-yellow-50 animate-bounce">Jjoongrami is in the frame! 💛</p>
                     </div>
                     <div className="w-[330px] h-[530px] lg:w-[350px] lg:h-[400px] rounded-xl shadow-lg">
                         {!selectedImage ? (
@@ -44,7 +44,7 @@ function DetailPhoto() {
                             />
                         )}
                     </div>
-                    <button className="font-bold bg-[#BB9D82] text-[#D3DDD9] pt-3 pb-3 pl-20 pr-20 cursor-pointer rounded-xl mt-6" onClick={handleTryIt}>Try It</button>
+                    <button className="bg-[#85943d] hover:bg-[#67722E] hover:translate-y-2 font-waterlily text-xl text-white px-35 lg:px-37 py-3 cursor-pointer rounded-xl mt-6" onClick={handleTryIt}>Try It</button>
                 </div>
             </div>
         </div>

@@ -11,7 +11,8 @@ import bg from "../assets/images/276.jpg";
 import bgdesign from "../assets/images/design-bg.jpg"
 import { ReactSketchCanvas } from "react-sketch-canvas";
 import Brush from "../components/Brush.jsx";
-import { width } from "@fortawesome/free-solid-svg-icons/fa0";
+import { handleClickSound } from "../utils/sound";
+
 
 
 function Design() {
@@ -62,7 +63,7 @@ function Design() {
         <button
           onClick={() => {
             localStorage.removeItem("savedPreview");
-            navigate("/");
+            navigate("/"); handleClickSound();
           }}
           className="bg-black text-white px-6 py-2 rounded-xl"
         >
@@ -111,7 +112,7 @@ function Design() {
     const canvas = await html2canvas(uiElement, {
       useCORS: true,
       backgroundColor: '#000',
-      scale: 1,
+      scale: 3,
     });
 
     // Download
@@ -179,8 +180,8 @@ function Design() {
             }}
           >
             <div className="flex justify-between items-center w-full h-[10vh] p-5">
-              <button className="text-xl italic font-bold text-[#CD784C]" onClick={() => navigate('/')}>Back</button>
-              <button onClick={handleSaveImage} className="text-xl italic font-bold text-[#8FD9FB]">Save</button>
+              <button className="text-2xl font-bold font-waterlily text-[#1c61af] cursor-pointer hover:-translate-x-2 hover:text-[#013B7Dff]" onClick={() => { navigate('/'); handleClickSound() }}>Back</button>
+              <button onClick={() => { handleSaveImage(); handleClickSound() }} className="text-2xl font-bold font-waterlily text-[#fde9d6] cursor-pointer hover:translate-x-2 hover:text-[#e08575]">Save</button>
             </div>
 
             <div
@@ -214,7 +215,7 @@ function Design() {
                 ref={brushRef}
                 width="100%"
                 height="100%"
-                strokeWidth={4}
+                strokeWidth={6}
                 strokeColor={colorBrush}
                 canvasColor="transparent"
                 style={{
@@ -303,7 +304,7 @@ function Design() {
               ))}
             </div>
 
-            {showBrush && (
+            {showBrush ? (
               <Brush
                 colorBrush={colorBrush}
                 setColorBrush={setColorBrush}
@@ -313,25 +314,27 @@ function Design() {
                 redo={handleRedoClick}
                 clear={handleClearClick}
               />
+            ) : (
+              <div className="flex justify-between items-center w-[85vw] sm:w-[26vw] mx-auto gap-2 sm:gap-5 mt-8">
+                <button className="bg-[#58727Fff] hover:bg-[#3a525e] hover:translate-y-2 w-[65vw] lg:w-[60vw] p-3 text-[#FEE5A9ff] font-waterlily text-2xl rounded-xl" onClick={() => { handleSticker(); handleClickSound() }}>Stickers</button>
+                <button className="bg-[#58727Fff] hover:bg-[#3a525e] hover:translate-y-2 w-[15vw] lg:w-[10vw] p-3 text-2xl font-waterlily rounded-2xl" onClick={() => { setShowBrush(true); handleClickSound() }}>
+                  <FontAwesomeIcon className="text-xl italic text-[#FEE5A9ff] font-waterlily" icon={faPaintBrush} />
+
+                </button>
+
+              </div>
             )}
 
-            <div className="flex justify-between items-center w-[85vw] sm:w-[26vw] mx-auto gap-2 sm:gap-5 mt-8">
-              <button className="bg-[#8FD9FB] w-[65vw] lg:w-[60vw] p-3 text-[#CD784C] text-xl italic font-bold rounded-xl" onClick={handleSticker}>Sticker</button>
-              <button className="bg-[#8FD9FB] w-[15vw] lg:w-[10vw] p-3 text-xl rounded-xl" onClick={() => { setShowBrush(true) }}>
-                <FontAwesomeIcon className="text-xl italic font-bold text-[#CD784C]" icon={faPaintBrush} />
 
-              </button>
-
-            </div>
 
           </div>
 
 
         ) : (
           <div className="relative overflow-hidden sm:rounded-3xl w-full h-screen lg:w-[30vw] md:w-[45vw] sm:w-[55vw] sm:h-[90vh]" style={bgStyle}>
-            <h1 className="absolute text-2xl text-black top-6 left-6">Pick your sticker!</h1>
-            <button onClick={() => setShowSticker(false)} className="cursor-pointer">
-              <FontAwesomeIcon icon={faXmark} className="absolute top-6 right-6 text-red-500 text-3xl" />
+            <h1 className="absolute text-2xl animate-bounce text-[#FEE5A9ff] -rotate-4 top-6 left-6 font-waterlily">A little art never hurts ✨ </h1>
+            <button onClick={() => { setShowSticker(false); handleClickSound() }} className="cursor-pointer">
+              <FontAwesomeIcon icon={faXmark} className="font-bold hover:translate-y-2 absolute top-6 right-6 text-red-500 text-3xl" />
             </button>
             <div className='w-[90vw] h-[75vh] lg:w-[27vw] lg:h-[72vh] absolute top-20 left-1/2 -translate-x-1/2  rounded-2xl border-blue-100 border-2' style={bgDesign}>
               <div className="absolute flex gap-3 overflow-y-auto max-h-[69vh] lg:max-h-[65vh] mt-5 mb-5 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-300 rounded-xl flex-wrap justify-center items-center">
