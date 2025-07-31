@@ -1,254 +1,124 @@
-export default [
-    {
-        id: 1,
+const data = Array.from(
+    [
+        "https://cdn-icons-png.flaticon.com/128/2632/2632839.png",
+        "https://cdn-icons-png.flaticon.com/128/66/66501.png",
+        "https://cdn-icons-png.flaticon.com/128/9558/9558456.png",
+        "https://cdn-icons-png.flaticon.com/128/8928/8928669.png",
+        "https://cdn-icons-png.flaticon.com/128/826/826904.png",
+        "https://cdn-icons-png.flaticon.com/128/2371/2371611.png",
+        "https://cdn-icons-png.flaticon.com/128/1469/1469722.png",
+        "https://cdn-icons-png.flaticon.com/128/15675/15675256.png",
+        "https://cdn-icons-png.flaticon.com/128/4713/4713810.png",
+        "https://cdn-icons-png.flaticon.com/128/6773/6773585.png",
+        "https://cdn-icons-png.flaticon.com/128/11565/11565985.png",
+        "https://cdn-icons-png.flaticon.com/128/14939/14939676.png",
+        "https://cdn-icons-png.flaticon.com/128/7326/7326020.png",
+        "https://cdn-icons-png.flaticon.com/128/14237/14237280.png",
+        "https://cdn-icons-png.flaticon.com/128/826/826955.png",
+        "https://cdn-icons-png.flaticon.com/128/6187/6187644.png",
+        "https://cdn-icons-png.flaticon.com/128/8823/8823371.png",
+        "https://cdn-icons-png.flaticon.com/128/8466/8466362.png",
+        "https://cdn-icons-png.flaticon.com/128/8928/8928616.png",
+        "https://cdn-icons-png.flaticon.com/128/4713/4713808.png",
+        "https://cdn-icons-png.flaticon.com/128/14939/14939674.png",
+        "https://cdn-icons-png.flaticon.com/128/13154/13154897.png",
+        "https://cdn-icons-png.flaticon.com/128/7835/7835418.png",
+        "https://cdn-icons-png.flaticon.com/128/9558/9558734.png",
+        "https://cdn-icons-png.flaticon.com/128/16150/16150453.png",
+        "https://cdn-icons-png.flaticon.com/128/8928/8928662.png",
+        "https://cdn-icons-png.flaticon.com/128/14769/14769911.png",
+        "https://cdn-icons-png.flaticon.com/128/18291/18291632.png",
+        "https://cdn-icons-png.flaticon.com/128/1391/1391334.png",
+        "https://cdn-icons-png.flaticon.com/128/15675/15675528.png",
+        "https://cdn-icons-png.flaticon.com/128/16014/16014458.png",
+        "https://cdn-icons-png.flaticon.com/128/14795/14795977.png",
+        "https://cdn-icons-png.flaticon.com/128/16150/16150465.png",
+        "https://cdn-icons-png.flaticon.com/128/5772/5772513.png",
+        "https://cdn-icons-png.flaticon.com/128/1390/1390890.png",
+        "https://cdn-icons-png.flaticon.com/128/4713/4713743.png",
+        "https://cdn-icons-png.flaticon.com/128/16150/16150416.png",
+        "https://cdn-icons-png.flaticon.com/128/13719/13719505.png",
+        "https://cdn-icons-png.flaticon.com/128/11478/11478492.png",
+        "https://cdn-icons-png.flaticon.com/128/6187/6187669.png",
+        "https://cdn-icons-png.flaticon.com/128/14427/14427272.png",
+        "https://cdn-icons-png.flaticon.com/128/10884/10884660.png",
+        "https://cdn-icons-png.flaticon.com/128/15675/15675343.png",
+        "https://cdn-icons-png.flaticon.com/128/17593/17593751.png",
+        "https://cdn-icons-png.flaticon.com/128/15794/15794035.png",
+        "https://cdn-icons-png.flaticon.com/128/11615/11615147.png",
+        "https://cdn-icons-png.flaticon.com/128/16014/16014462.png",
+        "https://cdn-icons-png.flaticon.com/128/16068/16068150.png",
+        "https://cdn-icons-png.flaticon.com/128/11566/11566146.png",
+        "https://cdn-icons-png.flaticon.com/128/5772/5772500.png",
+        "https://cdn-icons-png.flaticon.com/128/15675/15675772.png",
+        "https://cdn-icons-png.flaticon.com/128/1000/1000042.png",
+        "https://cdn-icons-png.flaticon.com/128/15675/15675614.png",
+        "https://cdn-icons-png.flaticon.com/128/16014/16014499.png",
+        "https://cdn-icons-png.flaticon.com/128/2395/2395887.png",
+        "https://cdn-icons-png.flaticon.com/128/15674/15674880.png",
+        "https://cdn-icons-png.flaticon.com/128/15675/15675231.png",
+        "https://cdn-icons-png.flaticon.com/128/7304/7304620.png",
+        "https://cdn-icons-png.flaticon.com/128/13518/13518266.png",
+        "https://cdn-icons-png.flaticon.com/128/8537/8537922.png",
+        "https://cdn-icons-png.flaticon.com/128/15429/15429902.png",
+        "https://cdn-icons-png.flaticon.com/128/18964/18964167.png",
+        "https://cdn-icons-png.flaticon.com/128/17392/17392649.png",
+        "https://cdn-icons-png.flaticon.com/128/14330/14330250.png",
+        "https://cdn-icons-png.flaticon.com/128/17593/17593688.png",
+        "https://cdn-icons-png.flaticon.com/128/2632/2632798.png",
+        "https://cdn-icons-png.flaticon.com/128/2632/2632810.png",
+        "https://cdn-icons-png.flaticon.com/128/11899/11899709.png",
+        "https://cdn-icons-png.flaticon.com/128/9847/9847407.png",
+        "https://cdn-icons-png.flaticon.com/128/66/66606.png",
+        "https://cdn-icons-png.flaticon.com/128/12123/12123608.png",
+        "https://cdn-icons-png.flaticon.com/128/26/26284.png",
+        "https://cdn-icons-png.flaticon.com/128/13482/13482179.png",
+        "https://cdn-icons-png.flaticon.com/128/4960/4960842.png",
+        "https://cdn-icons-png.flaticon.com/128/66/66640.png",
+        "https://cdn-icons-png.flaticon.com/128/4959/4959995.png",
+        "https://cdn-icons-png.flaticon.com/128/14975/14975814.png",
+        "https://cdn-icons-png.flaticon.com/128/346/346167.png",
+        "https://cdn-icons-png.flaticon.com/128/7096/7096435.png",
+        "https://cdn-icons-png.flaticon.com/128/10085/10085271.png",
+        "https://cdn-icons-png.flaticon.com/128/9494/9494431.png",
+        "https://cdn-icons-png.flaticon.com/128/3200/3200079.png",
+        "https://cdn-icons-png.flaticon.com/128/6426/6426621.png",
+        "https://cdn-icons-png.flaticon.com/128/9128/9128745.png",
+        "https://cdn-icons-png.flaticon.com/128/2276/2276906.png",
+        "https://cdn-icons-png.flaticon.com/128/4126/4126013.png",
+        "https://cdn-icons-png.flaticon.com/128/2977/2977402.png",
+        "https://cdn-icons-png.flaticon.com/128/2977/2977327.png",
+        "https://cdn-icons-png.flaticon.com/128/1010/1010028.png",
+        "https://cdn-icons-png.flaticon.com/128/1864/1864470.png",
+        "https://cdn-icons-png.flaticon.com/128/1063/1063448.png",
+        "https://cdn-icons-png.flaticon.com/128/1405/1405110.png",
+        "https://cdn-icons-png.flaticon.com/128/68/68493.png",
+        "https://cdn-icons-png.flaticon.com/128/9427/9427529.png",
+        "https://cdn-icons-png.flaticon.com/128/1790/1790829.png",
+        "https://cdn-icons-png.flaticon.com/128/677/677684.png",
+        "https://cdn-icons-png.flaticon.com/128/9656/9656139.png",
+        "https://cdn-icons-png.flaticon.com/128/2508/2508673.png",
+        "https://cdn-icons-png.flaticon.com/128/9427/9427538.png",
+        "https://cdn-icons-png.flaticon.com/128/5064/5064986.png",
+        "https://cdn-icons-png.flaticon.com/128/17280/17280477.png",
+        "https://cdn-icons-png.flaticon.com/128/8173/8173252.png",
+        "https://cdn-icons-png.flaticon.com/128/13518/13518401.png",
+        "https://cdn-icons-png.flaticon.com/128/16150/16150378.png",
+        "https://cdn-icons-png.flaticon.com/128/14900/14900187.png",
+        "https://cdn-icons-png.flaticon.com/128/15621/15621344.png",
+        "https://cdn-icons-png.flaticon.com/128/15262/15262376.png",
+        "https://cdn-icons-png.flaticon.com/128/8824/8824102.png",
+        "https://cdn-icons-png.flaticon.com/128/8686/8686226.png",
+        "https://cdn-icons-png.flaticon.com/128/14330/14330497.png",
+        "https://cdn-icons-png.flaticon.com/128/15182/15182073.png",
+        "https://cdn-icons-png.flaticon.com/128/8803/8803730.png"
+    ].map((url, index) => ({
+        id: index + 1,
         img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6843/6843687.png",
-            alt: "rose"
+            src: url,
+            alt: `sticker-${index + 1}`
         }
-    },
-    {
-        id: 2,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6427/6427720.png",
-            alt: "paper plane"
-        }
-    },
-    {
-        id: 3,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7647/7647415.png",
-            alt: "so cute"
-        }
-    },
-    {
-        id: 4,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6822/6822704.png",
-            alt: "cloud"
-        }
-    },
-    {
-        id: 5,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7039/7039055.png",
-            alt: "butterfly"
-        }
-    },
-    {
-        id: 6,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7070/7070305.png",
-            alt: "cute"
-        }
-    },
-    {
-        id: 7,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6843/6843687.png",
-            alt: "rose"
-        }
-    },
-    {
-        id: 8,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6427/6427720.png",
-            alt: "paper plane"
-        }
-    },
-    {
-        id: 9,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7647/7647415.png",
-            alt: "so cute"
-        }
-    },
-    {
-        id: 10,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6822/6822704.png",
-            alt: "cloud"
-        }
-    },
-    {
-        id: 11,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7039/7039055.png",
-            alt: "butterfly"
-        }
-    },
-    {
-        id: 12,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7070/7070305.png",
-            alt: "cute"
-        }
-    },
-    {
-        id: 13,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6843/6843687.png",
-            alt: "rose"
-        }
-    },
-    {
-        id: 14,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6427/6427720.png",
-            alt: "paper plane"
-        }
-    },
-    {
-        id: 15,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7647/7647415.png",
-            alt: "so cute"
-        }
-    },
-    {
-        id: 16,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6822/6822704.png",
-            alt: "cloud"
-        }
-    },
-    {
-        id: 17,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7039/7039055.png",
-            alt: "butterfly"
-        }
-    },
-    {
-        id: 18,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7070/7070305.png",
-            alt: "cute"
-        }
-    },
-    {
-        id: 1,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6843/6843687.png",
-            alt: "rose"
-        }
-    },
-    {
-        id: 2,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6427/6427720.png",
-            alt: "paper plane"
-        }
-    },
-    {
-        id: 3,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7647/7647415.png",
-            alt: "so cute"
-        }
-    },
-    {
-        id: 4,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6822/6822704.png",
-            alt: "cloud"
-        }
-    },
-    {
-        id: 5,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7039/7039055.png",
-            alt: "butterfly"
-        }
-    },
-    {
-        id: 6,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7070/7070305.png",
-            alt: "cute"
-        }
-    },
-    {
-        id: 7,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6843/6843687.png",
-            alt: "rose"
-        }
-    },
-    {
-        id: 8,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6427/6427720.png",
-            alt: "paper plane"
-        }
-    },
-    {
-        id: 9,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7647/7647415.png",
-            alt: "so cute"
-        }
-    },
-    {
-        id: 10,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6822/6822704.png",
-            alt: "cloud"
-        }
-    },
-    {
-        id: 11,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7039/7039055.png",
-            alt: "butterfly"
-        }
-    },
-    {
-        id: 12,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7070/7070305.png",
-            alt: "cute"
-        }
-    },
-    {
-        id: 13,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6843/6843687.png",
-            alt: "rose"
-        }
-    },
-    {
-        id: 14,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6427/6427720.png",
-            alt: "paper plane"
-        }
-    },
-    {
-        id: 15,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7647/7647415.png",
-            alt: "so cute"
-        }
-    },
-    {
-        id: 16,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/6822/6822704.png",
-            alt: "cloud"
-        }
-    },
-    {
-        id: 17,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7039/7039055.png",
-            alt: "butterfly"
-        }
-    },
-    {
-        id: 18,
-        img: {
-            src: "https://cdn-icons-png.flaticon.com/256/7070/7070305.png",
-            alt: "cute"
-        }
-    }
-]
+    }))
+);
+
+export default data;
