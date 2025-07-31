@@ -2,7 +2,7 @@ import { faXmark, faUndo, faRedo, faEraser, faRefresh } from "@fortawesome/free-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleClickSound } from "../utils/sound";
 
-export default function Brush({ setColorBrush, cross, eraser, undo, redo, clear }) {
+export default function Brush({ setColorBrush, cross, eraser, undo, redo, clear, disableEraser }) {
   
   const colors = [
     "#FFB6C1", // light pink
@@ -40,7 +40,7 @@ export default function Brush({ setColorBrush, cross, eraser, undo, redo, clear 
             colors.map((color, id) => (
               <button
                 key={id}
-                onClick={() => setColorBrush(color)}
+                onClick={() => {setColorBrush(color); disableEraser(); }}
                 style={{
                   backgroundColor: color,
                   borderRadius: '50%',

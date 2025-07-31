@@ -133,6 +133,12 @@ function Design() {
     brushRef.current?.eraseMode(true);
   };
 
+  const handleBrushClick = () => {
+    setEraseMode(false);
+    brushRef.current?.eraseMode(false); // paksa balik ke brush mode
+    setShowBrush(true);
+  };
+
   const handleUndoClick = () => {
     brushRef.current?.undo();
   };
@@ -144,6 +150,9 @@ function Design() {
   const handleClearClick = () => {
     brushRef.current?.clearCanvas();
   };
+
+
+
 
   const stickerElements = data.map((sticker) => (
     <Sticker
@@ -235,6 +244,7 @@ function Design() {
                 pointerEvents: showBrush ? "auto" : "none"
               }}
               className="absolute top-0 left-0 z-10"
+
             />
 
             {stickers.map((sticker, index) => (
@@ -324,14 +334,15 @@ function Design() {
               undo={handleUndoClick}
               redo={handleRedoClick}
               clear={handleClearClick}
+              disableEraser={handleBrushClick}
             />
-          ):(
-          <div className="flex justify-between items-center w-[85vw] sm:w-[26vw] mx-auto gap-2 sm:gap-5 mt-8">
-            <button className="bg-[#58727Fff] hover:bg-[#3a525e] hover:translate-y-2 w-[65vw] lg:w-[60vw] p-3 text-[#FEE5A9ff] font-waterlily text-2xl rounded-xl cursor-pointer" onClick={() => { handleSticker(); handleClickSound() }}>Stickers</button>
-            <button className="bg-[#58727Fff] hover:bg-[#3a525e] hover:translate-y-2 w-[15vw] lg:w-[10vw] p-3 text-2xl font-waterlily rounded-2xl cursor-pointer" onClick={() => { setShowBrush(true); handleClickSound() }}>
-              <FontAwesomeIcon className="text-xl italic text-[#FEE5A9ff] font-waterlily" icon={faPaintBrush} />
-            </button>
-          </div>
+          ) : (
+            <div className="flex justify-between items-center w-[85vw] sm:w-[26vw] mx-auto gap-2 sm:gap-5 mt-8">
+              <button className="bg-[#58727Fff] hover:bg-[#3a525e] hover:translate-y-2 w-[65vw] lg:w-[60vw] p-3 text-[#FEE5A9ff] font-waterlily text-2xl rounded-xl cursor-pointer" onClick={() => { handleSticker(); handleClickSound() }}>Stickers</button>
+              <button className="bg-[#58727Fff] hover:bg-[#3a525e] hover:translate-y-2 w-[15vw] lg:w-[10vw] p-3 text-2xl font-waterlily rounded-2xl cursor-pointer" onClick={() => { setShowBrush(true); handleClickSound() }}>
+                <FontAwesomeIcon className="text-xl italic text-[#FEE5A9ff] font-waterlily" icon={faPaintBrush} />
+              </button>
+            </div>
           )}
         </div>
       </div>
