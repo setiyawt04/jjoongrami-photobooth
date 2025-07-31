@@ -57,7 +57,7 @@ function Home() {
         console.log("File dipilih:", file.name, file.size);
         const maxSize = 4 * 1024 * 1024; 
         if (file.size > maxSize) {
-            toast.error("⚠️ File terlalu besar! Maksimal 4MB ya.", {
+            toast.error("⚠️ Oops! File is too large! Max size is 4MB.", {
                 position: "top-right",
                 className: 'text-sm',
                 autoClose: 3000
