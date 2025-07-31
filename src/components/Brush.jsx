@@ -24,7 +24,7 @@ export default function Brush({ setColorBrush, cross, eraser, undo, redo, clear 
   return (
     <div className="w-[320px] h-[90px] bg-[#FEE5A9ff] lg:w-[350px] lg:h-[80px] pl-4 pr-4 pt-2 pb-2 rounded-xl mx-auto mt-5">
       <div className="flex justify-between items-center">
-        <h1 className="text-[#FFA755ff] text-xl font-waterlily mb-3">Pick Your Color 🎨</h1>
+        <h1 className="text-[#FFA755ff] text-base lg:text-xl font-waterlily mb-3">Pick Your Color 🎨</h1>
         <div className="flex justify-between items-center mb-2 gap-3">
           <FontAwesomeIcon icon={faUndo} className={iconStyle} onClick={undo}/>
           <FontAwesomeIcon icon={faRedo} className={iconStyle} onClick={redo}/>
@@ -47,6 +47,7 @@ export default function Brush({ setColorBrush, cross, eraser, undo, redo, clear 
                   border: '1px solid white',
                   width: "24px",
                   height: "24px",
+                  cursor: 'pointer'
                 }}
               />
             ))
