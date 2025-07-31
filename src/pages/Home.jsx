@@ -96,20 +96,21 @@ function Home() {
 
                 </video>
 
-                <header className="absolute top-30 left-0 flex w-full h-full justify-center pt-30 items-center flex-col">
+                <header className="absolute top-25 left-0 flex w-full h-full justify-center pt-30 items-center flex-col">
 
                     {!letsGo ? (
                         <>
                             <img src={logo} alt="logo" className="animate-bouncy max-h-[100px]" />
-                            <button className="rounded-xl bg-[#f7c477] cursor-pointer text-white px-15 py-3  lg:text-2xl font-outline text-base font-bold font-waterlily mt-4 hover:translate-y-2 hover:bg-[#ffbd59]" onClick={() => {
+                            <button className="rounded-xl bg-[#f7c477] cursor-pointer text-white px-15 py-3  lg:text-2xl font-outline text-base font-bold font-waterlily hover:translate-y-2 hover:bg-[#ffbd59]" onClick={() => {
                                 setLetsGo(true);
                                 handleClickSound();
                             }}>Let's Go</button>
-                            
+                            <p className="absolute z-50 font-waterlily text-[#f7c477] text-base mt-55">All assets are not mine.</p>
+                        
                         </>
                         
                     ) : (
-
+                        <>
                         <nav className="animate-floaty">
                             <img src={logo} alt="logo" className="animate-bouncy max-h-[100px]" />
                             <ul className="flex flex-col gap-3 lg:w-[20vw] w-[72vw] mx-auto mt-5">
@@ -137,8 +138,11 @@ function Home() {
                             </ul>
                             
                         </nav>
-
+                        <p className="absolute z-50 font-waterlily text-[#f7c477] text-base mt-55">Crafted by <a className="underline" target="_blank" href="https://github.com/tiyawt">Tiya</a> @ 2025</p>
+                        
+                        </>
                     )}
+                    
                 </header>
                 <ToastContainer/>
             </div>
