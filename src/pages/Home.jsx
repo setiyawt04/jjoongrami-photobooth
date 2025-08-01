@@ -105,7 +105,7 @@ function Home() {
                                 setLetsGo(true);
                                 handleClickSound();
                             }}>Let's Go</button>
-                            <p className="absolute z-50 font-waterlily text-[#f7c477] text-base mt-55">All assets are not mine.</p>
+                            <p className="absolute z-50 font-waterlily text-[#f7c477] text-base mt-50">All assets are not mine.</p>
                         
                         </>
                         
@@ -138,7 +138,7 @@ function Home() {
                             </ul>
                             
                         </nav>
-                        <p className="absolute z-50 font-waterlily text-[#f7c477] text-base mt-55">Crafted by <a className="underline" target="_blank" href="https://github.com/tiyawt">Tiya</a> @ 2025</p>
+                        <p className="absolute z-50 font-waterlily text-[#f7c477] text-base mt-50">Crafted by <a className="underline" target="_blank" href="https://github.com/tiyawt">Tiya</a> @ 2025</p>
                         
                         </>
                     )}

@@ -26,7 +26,7 @@ function Sample() {
                         <button className="text-2xl font-bold font-waterlily text-[#e95b42] font-outline2 cursor-pointer hover:-translate-x-2 hover:text-[#d33b20]" onClick={() => {navigate('/'); handleClickSound()}}>Back</button>
                         <p className="text-base lg:text-xl font-waterlily text-yellow-50 animate-bounce">Playground: Jjoongrami Edition ⚡</p>
                     </div>
-                    <div className="w-[330px] h-[600px] lg:w-[350px] lg:mt-8 bg-yellow-50 lg:h-[500px] rounded-xl shadow-lg p-5 overflow-x-auto">
+                    <div className="w-[330px] h-[600px] lg:w-[350px] lg:mt-8 bg-yellow-50 lg:h-[480px] rounded-xl shadow-lg p-5 overflow-x-auto">
                         <div className="flex flex-wrap gap-4">
                             {data.map(image => (
                                 <div key={image.id} className="w-[calc(50%-0.5rem)] cursor-pointer group" onClick={()=> {handleClick(image.id); handleClickSound()}}>

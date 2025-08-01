@@ -1,12 +1,43 @@
-# React + Vite
+# Jjoongrami Photobooth
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ✨ Deskripsi
+**Jjoongrami Photobooth** adalah aplikasi React yang memungkinkan pengguna:
+- 📸 Mengambil foto dengan `react-webcam`
+- ✏️ Menggambar bebas menggunakan `ReactSketchCanvas`
+- 🎨 Menambahkan stiker yang dapat di-drag, resize, dan rotasi dengan `React Moveable`
+- 💅 Menikmati tampilan responsif berbasis **Tailwind CSS**
 
-Currently, two official plugins are available:
+Sederhana, interaktif, dan menyenangkan untuk menciptakan pengalaman photobooth yang kreatif.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Tech Stack
+| Teknologi         | Deskripsi                     |
+|-------------------|-------------------------------|
+| React             | Library utama aplikasi        |
+| react-webcam      | Ambil foto dari kamera        |
+| ReactSketchCanvas | Coret-coret di atas foto      |
+| React Moveable    | Drag, resize, dan rotasi stiker |
+| Tailwind CSS      | Styling responsif dan modern  |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📸 Demo
+Tambahkan GIF aplikasi di sini:
+
+![Jjoongrami Photobooth Demo Dekstop](./src/assets/demo/demo.gif)
+---
+
+## 🔧 Instalasi
+```bash
+# Clone repo
+git clone https://github.com/tiyawt/jjoongrami-photobooth.git
+
+# Masuk folder project
+cd jjoongrami-photobooth
+
+# Install dependencies
+npm install
+
+# Jalankan aplikasi
+npm run dev

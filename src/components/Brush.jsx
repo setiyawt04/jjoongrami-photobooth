@@ -20,17 +20,17 @@ export default function Brush({ setColorBrush, cross, eraser, undo, redo, clear,
     "#FFDAC1", // peach puff
     "#B5EAD7", // mint milk
   ]
-  const iconStyle = 'text-[#FFA755ff] font-bold hover:translate-y-0.5'
+  const iconStyle = 'text-[#FFA755ff] font-bold hover:translate-y-0.5 text-base'
   return (
-    <div className="w-[320px] h-[90px] bg-[#FEE5A9ff] lg:w-[350px] lg:h-[80px] pl-4 pr-4 pt-2 pb-2 rounded-xl mx-auto mt-5">
+    <div className="w-[320px] h-[90px] bg-[#FEE5A9ff] lg:w-[350px] bottom-10 lg:h-[80px] pl-4 pr-4 pt-2 pb-2 rounded-xl mx-auto mt-5">
       <div className="flex justify-between items-center">
-        <h1 className="text-[#FFA755ff] text-base lg:text-xl font-waterlily mb-3">Pick Your Color 🎨</h1>
+        <h1 className="text-[#FFA755ff] text-base font-waterlily mb-2">Pick Your Color 🎨</h1>
         <div className="flex justify-between items-center mb-2 gap-3">
           <FontAwesomeIcon icon={faUndo} className={iconStyle} onClick={undo}/>
           <FontAwesomeIcon icon={faRedo} className={iconStyle} onClick={redo}/>
           <FontAwesomeIcon icon={faEraser} className={iconStyle} onClick={eraser}/>
           <FontAwesomeIcon icon={faRefresh} className={iconStyle} onClick={clear}/>
-          <FontAwesomeIcon icon={faXmark} className="text-red-500 hover:translate-y-0.5 font-bold text-xl" onClick={()=>{cross(); handleClickSound()}} />
+          <FontAwesomeIcon icon={faXmark} className="text-red-500 hover:translate-y-0.5 font-bold text-base" onClick={()=>{cross(); handleClickSound()}} />
         </div>
         
       </div>

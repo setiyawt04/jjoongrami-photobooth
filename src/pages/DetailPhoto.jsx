@@ -33,7 +33,7 @@ function DetailPhoto() {
                         <button className="text-2xl font-bold font-waterlily text-[#e95b42] font-outline2 hover:text-[#d33b20] cursor-pointer hover:-translate-x-2" onClick={() => {navigate('/sample'); handleClickSound()}}>Back</button>
                         <p className="text-base lg:text-xl font-waterlily text-yellow-50 animate-bounce">Jjoongrami is in the frame! 💛</p>
                     </div>
-                    <div className="w-[330px] h-[530px] lg:w-[350px] lg:h-[400px] rounded-xl shadow-lg">
+                    <div className="w-[330px] h-[530px] lg:w-[350px] lg:h-[375px] rounded-xl shadow-lg">
                         {!selectedImage ? (
                             <p>Gambar tidak ditemukan</p>
                         ) : (
