@@ -23,9 +23,8 @@ Sederhana, interaktif, dan menyenangkan untuk menciptakan pengalaman photobooth 
 ---
 
 ## 📸 Demo
-Tambahkan GIF aplikasi di sini:
 
-![Jjoongrami Photobooth Demo Dekstop](./src/assets/demo/demo.gif)
+![Jjoongrami Photobooth Demo](./src/assets/demo/demo.gif)
 ---
 
 ## 🔧 Instalasi
